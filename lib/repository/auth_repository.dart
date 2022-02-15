@@ -15,12 +15,15 @@ abstract class BaseAuthRepository {
   Future<Either<Failure, Credentials>> signUp({
     required AuthRequirementData authData,
   });
+
+  Future<Credentials?> checkAuthStatus();
+  Future<void> signout();
 }
 
 class AuthRepository implements BaseAuthRepository {
   AuthRepository(this._dio, this._baseStorage);
   final Dio _dio;
-  final BaseStorage _baseStorage;
+  final BaseStorage<Credentials> _baseStorage;
   @override
   Future<Either<Failure, Credentials>> signIn({
     required AuthRequirementData authData,
@@ -57,5 +60,15 @@ class AuthRepository implements BaseAuthRepository {
       final error = DioErrorUtil.handleError(e);
       return left(Failure(error));
     }
+  }
+
+  @override
+  Future<void> signout() async {
+    return _baseStorage.clear();
+  }
+
+  @override
+  Future<Credentials?> checkAuthStatus() async {
+    return _baseStorage.read();
   }
 }

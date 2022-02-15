@@ -29,7 +29,6 @@ class User {
     required this.bio,
     required this.image,
   });
-
   final String email;
   final String token;
   final String username;
@@ -55,4 +54,14 @@ class User {
         "bio": bio,
         "image": image,
       };
+}
+
+class UserManager {
+  User? _user;
+  UserManager();
+  void init(User user) {
+    _user = user;
+  }
+
+  User? get user => _user;
 }
