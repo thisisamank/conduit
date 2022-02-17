@@ -4,13 +4,17 @@ import 'package:conduit/notifiers/auth_notifier.dart';
 import 'package:conduit/notifiers/states/auth_states.dart';
 import 'package:conduit/repository/auth_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockAuthRepository extends Mock implements BaseAuthRepository {}
+import 'auth_notifier_test.mocks.dart';
 
+// class MockAuthRepository extends Mock implements BaseAuthRepository {}
+
+@GenerateMocks([BaseAuthRepository])
 void main() {
   late final AuthNotifier sut;
-  late final MockAuthRepository mockAuthRepository;
+  late final MockBaseAuthRepository mockAuthRepository;
   final Credentials credentials = Credentials(
     user: User(
       bio: 'some bio',
@@ -23,7 +27,7 @@ void main() {
   final authData =
       AuthRequirementData(username: "username", password: "password");
   setUp(() {
-    mockAuthRepository = MockAuthRepository();
+    mockAuthRepository = MockBaseAuthRepository();
     sut = AuthNotifier(mockAuthRepository);
   });
 
@@ -34,9 +38,9 @@ void main() {
   group('Login methods', () {
     test('Test checkAuthStatus', () async {
       when(mockAuthRepository.checkAuthStatus())
-          .thenReturn(Future.value(credentials));
+          .thenAnswer((_) async => credentials);
       sut.checkAndUpdateAuthStatus();
-      verify(() => mockAuthRepository.checkAuthStatus()).called(1);
+      verify(mockAuthRepository.checkAuthStatus()).called(1);
     });
   });
 }
