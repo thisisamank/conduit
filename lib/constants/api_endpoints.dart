@@ -1,6 +1,8 @@
 class ApiEndpoints {
   ApiEndpoints._();
 
+  static const int paginationLimit = 10;
+
   static const String baseUrl = "https://api.realworld.io/api";
 
   // User URLs

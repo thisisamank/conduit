@@ -15,7 +15,6 @@ abstract class BaseAuthRepository {
   Future<Either<Failure, Credentials>> signUp({
     required AuthRequirementData authData,
   });
-
   Future<Credentials?> checkAuthStatus();
   Future<void> signout();
 }
@@ -31,7 +30,7 @@ class AuthRepository implements BaseAuthRepository {
     try {
       final response =
           await _dio.post(ApiEndpoints.loginUrl, data: authData.toJson());
-      if (successfulResponse(response.statusCode!)) {
+      if (isSuccessfulResponse(response.statusCode!)) {
         final credentials = Credentials.fromJson(response.data);
         _baseStorage.save(credentials);
         return right(credentials);
@@ -50,7 +49,7 @@ class AuthRepository implements BaseAuthRepository {
     try {
       final response =
           await _dio.post(ApiEndpoints.registerUrl, data: authData.toJson());
-      if (successfulResponse(response.statusCode!)) {
+      if (isSuccessfulResponse(response.statusCode!)) {
         final credentials = Credentials.fromJson(response.data);
         _baseStorage.save(credentials);
         return right(credentials);
@@ -63,12 +62,8 @@ class AuthRepository implements BaseAuthRepository {
   }
 
   @override
-  Future<void> signout() async {
-    return _baseStorage.clear();
-  }
+  Future<void> signout() async => await _baseStorage.clear();
 
   @override
-  Future<Credentials?> checkAuthStatus() async {
-    return _baseStorage.read();
-  }
+  Future<Credentials?> checkAuthStatus() async => await _baseStorage.read();
 }
