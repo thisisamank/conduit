@@ -20,12 +20,12 @@ class AuthNotifier extends StateNotifier<AuthStates> {
     final authStatus = await _authRepository.signIn(authData: authData);
     authStatus.fold(
       (failure) => state = AuthStates.failure(failure.message),
-      (credentials) => checkAndUpdateAuthStatus(),
+      (credentials) async => await checkAndUpdateAuthStatus(),
     );
   }
 
   Future<void> signUp(AuthRequirementData authData) async {
-    final authStatus = await _authRepository.signIn(authData: authData);
+    final authStatus = await _authRepository.signUp(authData: authData);
     authStatus.fold(
       (failure) => state = AuthStates.failure(failure.message),
       (credentials) => checkAndUpdateAuthStatus(),
