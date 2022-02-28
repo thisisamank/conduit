@@ -10,7 +10,7 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class BaseArticleRepository {
   Future<Either<Article, Failure>> postArticle(Article article);
-  Future<Either<TotalArticles, Failure>> fetchArticles({
+  Future<Either<TotalArticles, Failure>> fetchAllArticles({
     String? tag,
     String? author,
     String? favorited,
@@ -19,7 +19,12 @@ abstract class BaseArticleRepository {
   Future<Either<TotalArticles, Failure>> fetchFeedArticles({
     int limit = ApiEndpoints.paginationLimit,
   });
-  Future<Either<Article, Failure>> getArticleFromSlug(String slug);
+  Future<Either<Article, Failure>> fetchArticle(String slug);
+  Future<Either<Unit, Failure>> deletAricle(String slug);
+  Future<Either<Article, Failure>> updateArticle({
+    required String slug,
+    required Article article,
+  });
 }
 
 class ArticleRepository extends BaseArticleRepository {
@@ -43,7 +48,7 @@ class ArticleRepository extends BaseArticleRepository {
   }
 
   @override
-  Future<Either<TotalArticles, Failure>> fetchArticles({
+  Future<Either<TotalArticles, Failure>> fetchAllArticles({
     String? tag,
     String? author,
     String? favorited,
@@ -78,7 +83,9 @@ class ArticleRepository extends BaseArticleRepository {
     try {
       final response = await _dio.get(
         ApiEndpoints.feedArticlesUrl,
-        queryParameters: {'limit': limit},
+        queryParameters: {
+          'limit': limit,
+        },
       );
       if (isSuccessfulResponse(response.statusCode!)) {
         final articlesJson = response.data as Map<String, dynamic>;
@@ -93,7 +100,7 @@ class ArticleRepository extends BaseArticleRepository {
   }
 
   @override
-  Future<Either<Article, Failure>> getArticleFromSlug(String slug) async {
+  Future<Either<Article, Failure>> fetchArticle(String slug) async {
     try {
       final response =
           await _dio.get(ApiEndpoints.articleFromSlugUrl(slug: slug));
@@ -101,6 +108,43 @@ class ArticleRepository extends BaseArticleRepository {
         final articleJson = response.data as Map<String, dynamic>;
         final article = Article.fromJson(articleJson);
         return left(article);
+      }
+      return right(Failure());
+    } on DioError catch (e) {
+      String message = DioErrorUtil.handleError(e);
+      return right(Failure(message));
+    }
+  }
+
+  @override
+  Future<Either<Article, Failure>> updateArticle({
+    required String slug,
+    required Article article,
+  }) async {
+    try {
+      final response = await _dio.post(
+        ApiEndpoints.articleFromSlugUrl(slug: slug),
+        data: article.toJson(),
+      );
+      if (isSuccessfulResponse(response.statusCode!)) {
+        final articleJson = response.data as Map<String, dynamic>;
+        final article = Article.fromJson(articleJson);
+        return left(article);
+      }
+      return right(Failure());
+    } on DioError catch (e) {
+      String message = DioErrorUtil.handleError(e);
+      return right(Failure(message));
+    }
+  }
+
+  @override
+  Future<Either<Unit, Failure>> deletAricle(String slug) async {
+    try {
+      final response =
+          await _dio.get(ApiEndpoints.articleFromSlugUrl(slug: slug));
+      if (isSuccessfulResponse(response.statusCode!)) {
+        return left(unit);
       }
       return right(Failure());
     } on DioError catch (e) {
