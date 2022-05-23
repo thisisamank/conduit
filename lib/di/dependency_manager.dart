@@ -33,5 +33,6 @@ void setUpDependencies() {
 final dio = getIt.get<Dio>();
 final flutterSecureStorage = getIt.get<FlutterSecureStorage>();
 final credentialStorage = getIt.get<BaseStorage<Credentials>>();
+final authRepository = getIt.get<BaseAuthRepository>();
 final userManager = getIt.get<UserManager>();
 final user = userManager.user;

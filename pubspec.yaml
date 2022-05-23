@@ -15,6 +15,7 @@ dependencies:
   fpdart: ^0.0.14
   freezed_annotation: ^2.0.3
   get_it: ^7.2.0
+  go_router: ^3.1.0
   hooks_riverpod: ^1.0.4
 
 
@@ -45,18 +46,18 @@ flutter:
   fonts:
     - family: AppFontLight
       fonts:
-        - asset: fonts/Inter-Light.ttf
+        - asset: assets/fonts/Inter-Light.ttf
     - family: AppFontRegular
       fonts:
-        - asset: fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
     - family: AppFontMedium
       fonts:
-        - asset: fonts/Inter-Medium.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
     - family: AppFontSemiBold
       fonts:
-        - asset: fonts/Inter-SemiBold.ttf
+        - asset: assets/fonts/Inter-SemiBold.ttf
     - family: AppFontBold
       fonts:
-        - asset: fonts/Inter-Bold.ttf
+        - asset: assets/fonts/Inter-Bold.ttf
   
 
