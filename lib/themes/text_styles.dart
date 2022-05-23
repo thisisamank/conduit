@@ -1,5 +1,14 @@
 import 'package:conduit/constants/app_colors.dart';
+import 'package:conduit/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
+
+extension AdaptiveSize on num {
+  double get adjustSize =>
+      ((SizeConfig.deviceHeight! * SizeConfig.deviceWidth!) / (414 * 896)) *
+      this *
+      100 *
+      100;
+}
 
 class AppTextStyles {
   AppTextStyles._();
@@ -11,10 +20,10 @@ class AppTextStyles {
   static const String boldFont = 'AppFontBold';
 
   // Heading styles
-  static TextStyle get h1 => const TextStyle(
+  static TextStyle get h1 => TextStyle(
         fontFamily: boldFont,
-        fontSize: 60,
-        height: 72,
+        fontSize: 60.adjustSize,
+        height: 72.adjustSize,
         color: AppColors.neutral900,
       );
 
@@ -67,9 +76,9 @@ class AppTextStyles {
         color: AppColors.neutral900,
       );
 
-  static TextStyle get h5 => const TextStyle(
+  static TextStyle get h5 => TextStyle(
         fontFamily: boldFont,
-        fontSize: 23,
+        fontSize: 23.adjustSize,
         height: 28,
         color: AppColors.neutral900,
       );

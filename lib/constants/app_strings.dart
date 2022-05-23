@@ -9,6 +9,7 @@ class AppStrings {
   static const String invalidStatusCode = "Received invalid status code:";
   static const String sendTimeout =
       "Send timeout in connection with API server";
+  static const String createYourAccount = "Create Your account";
   static const String connectionFailedInternetUnavailable =
       "Connection to API server failed due to internet connection";
 }

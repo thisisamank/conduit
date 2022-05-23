@@ -1,3 +1,4 @@
+import 'package:conduit/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,6 +7,9 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    SizeConfig().init(context);
+    return const Scaffold(
+      body: Center(child: Text("Splash Screen")),
+    );
   }
 }
