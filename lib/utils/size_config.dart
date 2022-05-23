@@ -7,10 +7,10 @@ class SizeConfig {
   static Orientation? _orientation;
   static Brightness? _brightness;
 
-  double? get deviceWidth => _deviceWidth;
-  double? get deviceHeight => _deviceHeight;
-  Orientation? get orientation => _orientation;
-  Brightness? get brightness => _brightness;
+  static double? get deviceWidth => _deviceWidth;
+  static double? get deviceHeight => _deviceHeight;
+  static Orientation? get orientation => _orientation;
+  static Brightness? get brightness => _brightness;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
