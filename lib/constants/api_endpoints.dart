@@ -1,4 +1,5 @@
 class ApiEndpoints {
+  //Private constructor.
   ApiEndpoints._();
 
   static const int paginationLimit = 10;

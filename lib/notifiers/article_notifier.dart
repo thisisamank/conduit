@@ -36,6 +36,16 @@ class ArticlesNotifier extends StateNotifier<AsyncValue<TotalArticles>> {
       (failure) => AsyncValue.error(failure),
     );
   }
+
+  Future<void> postArticle(Article article) async {
+    state = const AsyncValue.loading();
+    final articleStatus = await _articleRepository.postArticle(article);
+    state.value!.articles.add(article);
+    state = articleStatus.fold(
+      (article) => state..value!.articles.add(article),
+      (failure) => AsyncValue.error(failure),
+    );
+  }
 }
 
 class ArticleCrudNotifier extends StateNotifier<CustomAsyncValue<Article>> {
