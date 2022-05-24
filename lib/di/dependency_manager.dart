@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
-const bool showApiLogs = false;
+const bool showApiLogs = true;
 
 void setUpDependencies() {
   getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());

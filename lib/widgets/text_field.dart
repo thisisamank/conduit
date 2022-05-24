@@ -7,10 +7,12 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     required this.textController,
     required this.hintText,
+    this.validator,
     Key? key,
   }) : super(key: key);
   final String hintText;
   final TextEditingController textController;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class AppTextField extends StatelessWidget {
         color: AppColors.neutral200,
       ),
       cursorHeight: extraLargeValue * 1.2,
+      validator: validator,
       cursorColor: AppColors.primaryColor,
       controller: textController,
       decoration: InputDecoration(
@@ -52,11 +55,13 @@ class LabeledTextField extends StatelessWidget {
     required this.hintText,
     required this.label,
     required this.textEditingController,
+    this.validator,
   }) : super(key: key);
 
   final String hintText;
   final String label;
   final TextEditingController textEditingController;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +78,7 @@ class LabeledTextField extends StatelessWidget {
         ),
         vSizedBox2,
         AppTextField(
+          validator: validator,
           textController: textEditingController,
           hintText: hintText,
         )

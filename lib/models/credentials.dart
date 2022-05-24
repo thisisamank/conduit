@@ -43,8 +43,8 @@ class User {
         email: json["email"],
         token: json["token"],
         username: json["username"],
-        bio: json["bio"],
-        image: json["image"],
+        bio: json["bio"] ?? "",
+        image: json["image"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

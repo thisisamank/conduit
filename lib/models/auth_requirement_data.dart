@@ -2,8 +2,8 @@ import 'dart:convert';
 
 class AuthRequirementData {
   AuthRequirementData({
-    required this.username,
-    this.email = "",
+    this.username = "",
+    required this.email,
     required this.password,
   });
 

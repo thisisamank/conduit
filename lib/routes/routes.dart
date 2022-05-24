@@ -1,5 +1,5 @@
 import 'package:conduit/routes/route_names.dart';
-import 'package:conduit/view/auth/login_screen.dart';
+import 'package:conduit/view/auth/sign_in_screen.dart';
 import 'package:conduit/view/auth/sign_up_screen.dart';
 import 'package:conduit/view/onboarding/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
