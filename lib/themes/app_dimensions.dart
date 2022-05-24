@@ -1,3 +1,4 @@
+import 'package:conduit/themes/text_styles.dart';
 import 'package:conduit/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -78,3 +79,8 @@ final SizedBox hSizedBox9 = SizedBox(
 final SizedBox hSizedBox10 = SizedBox(
   width: SizeConfig.deviceWidth! * 10,
 );
+
+final smallValue = 8.adjustSize;
+final mediumValue = 12.adjustSize;
+final largeValue = 16.adjustSize;
+final extraLargeValue = 24.adjustSize;

@@ -8,7 +8,7 @@ final appRouter = GoRouter(routes: appRoutes);
 
 final appRoutes = <GoRoute>[
   _generateGoRoute(AppRouteNames.splashScreen, const SplashScreen()),
-  _generateGoRoute(AppRouteNames.loginScreen, const LoginScreen())
+  _generateGoRoute(AppRouteNames.loginScreen, SignInScreen())
 ];
 
 GoRoute _generateGoRoute(

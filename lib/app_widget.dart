@@ -1,10 +1,8 @@
-import 'package:conduit/constants/app_colors.dart';
 import 'package:conduit/di/dependency_manager.dart';
 import 'package:conduit/di/riverpod_dependency_manager.dart';
 import 'package:conduit/notifiers/states/auth_states.dart';
 import 'package:conduit/routes/route_names.dart';
 import 'package:conduit/routes/routes.dart';
-import 'package:conduit/themes/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -43,11 +41,6 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
     return MaterialApp.router(
       routeInformationParser: appRouter.routeInformationParser,
       routerDelegate: appRouter.routerDelegate,
-      theme: ThemeData(
-        backgroundColor: AppColors.dark700,
-        primaryColor: AppColors.primaryColor,
-        fontFamily: AppTextStyles.regularFont,
-      ),
     );
   }
 }
