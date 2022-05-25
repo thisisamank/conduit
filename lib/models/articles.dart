@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:conduit/models/credentials.dart';
+import 'package:conduit/models/author.dart';
 
 class TotalArticles {
   TotalArticles({
@@ -8,7 +8,7 @@ class TotalArticles {
     required this.articlesCount,
   });
 
-  final List<Article> articles;
+  List<Article> articles;
   final int articlesCount;
 
   factory TotalArticles.fromRawJson(String str) =>
@@ -49,7 +49,7 @@ class Article {
   String slug;
   DateTime? createdAt;
   DateTime? updatedAt;
-  User? author;
+  Author? author;
   int favoritesCount;
   bool favorited;
 
@@ -65,7 +65,7 @@ class Article {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         tagList: List<String>.from(json["tagList"].map((x) => x)),
-        author: User.fromJson(json["author"]),
+        author: Author.fromJson(json["author"]),
         favoritesCount: json["favoritesCount"],
         favorited: json["favorited"],
       );

@@ -84,3 +84,4 @@ final smallValue = 8.adjustSize;
 final mediumValue = 12.adjustSize;
 final largeValue = 16.adjustSize;
 final extraLargeValue = 24.adjustSize;
+const largestValue = double.infinity;

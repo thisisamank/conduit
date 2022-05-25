@@ -32,7 +32,13 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
           unAuthenticated: () => appRouter.go(AppRouteNames.loginScreen),
           authenticated: (value) {
             userManager.init(value.user);
-            appRouter.go(AppRouteNames.homeScreen);
+
+            // if (user?.bio == "") {
+            //   appRouter.go(AppRouteNames.prfileUpdateScreen);
+            // } else {
+            //   appRouter.go(AppRouteNames.homeScreen);
+            // }
+            appRouter.go(AppRouteNames.feedScreen);
           },
           orElse: () {},
         );

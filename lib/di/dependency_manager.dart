@@ -1,4 +1,5 @@
 import 'package:conduit/models/credentials.dart';
+import 'package:conduit/repository/article_repository.dart';
 import 'package:conduit/repository/auth_repository.dart';
 import 'package:conduit/repository/local_storage/base_storage.dart';
 import 'package:conduit/repository/local_storage/credential_storage.dart';
@@ -28,6 +29,7 @@ void setUpDependencies() {
       CredentialStorage(flutterSecureStorage));
   getIt.registerSingleton<BaseAuthRepository>(
       AuthRepository(dio, credentialStorage));
+  getIt.registerSingleton<BaseArticleRepository>(ArticleRepository(dio));
 }
 
 final dio = getIt.get<Dio>();
@@ -35,4 +37,5 @@ final flutterSecureStorage = getIt.get<FlutterSecureStorage>();
 final credentialStorage = getIt.get<BaseStorage<Credentials>>();
 final authRepository = getIt.get<BaseAuthRepository>();
 final userManager = getIt.get<UserManager>();
+final articleRepository = getIt.get<BaseArticleRepository>();
 final user = userManager.user;

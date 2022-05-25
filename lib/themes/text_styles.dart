@@ -62,9 +62,9 @@ class AppTextStyles {
         color: AppColors.neutral200,
       );
 
-  static TextStyle get h4SemiBold => const TextStyle(
+  static TextStyle get h4SemiBold => TextStyle(
         fontFamily: semiBoldFont,
-        fontSize: 28,
+        fontSize: 28.adjustSize,
         color: AppColors.neutral200,
       );
 
@@ -93,9 +93,9 @@ class AppTextStyles {
       );
 
   // Paragraphs styles
-  static TextStyle get p1 => const TextStyle(
+  static TextStyle get p1 => TextStyle(
         fontFamily: regularFont,
-        fontSize: 14,
+        fontSize: 14.adjustSize,
         color: AppColors.neutral200,
       );
 
@@ -105,16 +105,16 @@ class AppTextStyles {
         color: AppColors.neutral200,
       );
 
-  static TextStyle get p2 => const TextStyle(
+  static TextStyle get p2 => TextStyle(
         fontFamily: regularFont,
-        fontSize: 16,
+        fontSize: 16.adjustSize,
         color: AppColors.neutral200,
       );
 
-  static TextStyle get p2Bold => const TextStyle(
+  static TextStyle get p2Bold => TextStyle(
         fontFamily: semiBoldFont,
-        fontSize: 16,
-        color: AppColors.neutral200,
+        fontSize: 16.adjustSize,
+        color: AppColors.neutral100,
       );
   static TextStyle get p3 => TextStyle(
         fontFamily: regularFont,

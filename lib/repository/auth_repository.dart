@@ -1,5 +1,4 @@
 import 'package:conduit/constants/api_endpoints.dart';
-import 'package:conduit/models/auth_requirement_data.dart';
 import 'package:conduit/models/credentials.dart';
 import 'package:conduit/models/failure.dart';
 import 'package:conduit/repository/local_storage/base_storage.dart';
@@ -10,10 +9,13 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class BaseAuthRepository {
   Future<Either<Failure, Credentials>> signIn({
-    required AuthRequirementData authData,
+    required String emailId,
+    required String password,
   });
   Future<Either<Failure, Credentials>> signUp({
-    required AuthRequirementData authData,
+    required String username,
+    required String emailId,
+    required String password,
   });
   Future<Credentials?> checkAuthStatus();
   Future<void> signout();
@@ -25,11 +27,17 @@ class AuthRepository implements BaseAuthRepository {
   final BaseStorage<Credentials> _baseStorage;
   @override
   Future<Either<Failure, Credentials>> signIn({
-    required AuthRequirementData authData,
+    required String emailId,
+    required String password,
   }) async {
+    final payload = {
+      "user": {
+        "email": emailId,
+        "password": password,
+      }
+    };
     try {
-      final response =
-          await _dio.post(ApiEndpoints.loginUrl, data: authData.toJson());
+      final response = await _dio.post(ApiEndpoints.loginUrl, data: payload);
       if (isSuccessfulResponse(response.statusCode!)) {
         final credentials = Credentials.fromJson(response.data);
         _baseStorage.save(credentials);
@@ -44,11 +52,19 @@ class AuthRepository implements BaseAuthRepository {
 
   @override
   Future<Either<Failure, Credentials>> signUp({
-    required AuthRequirementData authData,
+    required String username,
+    required String emailId,
+    required String password,
   }) async {
+    final payload = {
+      "user": {
+        "username": username,
+        "email": emailId,
+        "password": password,
+      }
+    };
     try {
-      final response =
-          await _dio.post(ApiEndpoints.registerUrl, data: authData.toJson());
+      final response = await _dio.post(ApiEndpoints.registerUrl, data: payload);
       if (isSuccessfulResponse(response.statusCode!)) {
         final credentials = Credentials.fromJson(response.data);
         _baseStorage.save(credentials);

@@ -1,7 +1,6 @@
 import 'package:conduit/constants/app_colors.dart';
 import 'package:conduit/constants/app_strings.dart';
 import 'package:conduit/di/riverpod_dependency_manager.dart';
-import 'package:conduit/models/auth_requirement_data.dart';
 import 'package:conduit/routes/route_names.dart';
 import 'package:conduit/themes/app_dimensions.dart';
 import 'package:conduit/themes/text_styles.dart';
@@ -70,11 +69,10 @@ class SignInScreen extends ConsumerWidget {
                   buttonText: AppStrings.signIn,
                   onPressed: () {
                     if (_key.currentState!.validate()) {
-                      AuthRequirementData data = AuthRequirementData(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-                      ref.watch(authNotifierProvider.notifier).signIn(data);
+                      ref.watch(authNotifierProvider.notifier).signIn(
+                            emailId: _emailController.text,
+                            password: _passwordController.text,
+                          );
                     }
                   },
                 ),

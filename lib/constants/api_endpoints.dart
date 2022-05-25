@@ -4,7 +4,7 @@ class ApiEndpoints {
 
   static const int paginationLimit = 10;
 
-  static const String baseUrl = "https://api.realworld.io/api";
+  static const String baseUrl = "https://conduit-thisisamank.herokuapp.com/api";
 
   // User URLs
   static const String userUrl = "$baseUrl/user";

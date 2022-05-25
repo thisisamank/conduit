@@ -37,6 +37,45 @@ class ArticlesNotifier extends StateNotifier<AsyncValue<TotalArticles>> {
     );
   }
 
+  Future<void> changefavouriteStatusOfArticle(String slug) async {
+    bool favStatus = false;
+    final articles = state.asData!.value.articles.map((article) {
+      if (article.slug == slug) {
+        favStatus = article.favorited;
+        if (favStatus) {
+          article.favoritesCount--;
+        } else {
+          article.favoritesCount++;
+        }
+        article.favorited = !article.favorited;
+      }
+      return article;
+    }).toList();
+    state = AsyncValue.data(state.asData!.value..articles = articles);
+
+    final articleStatus =
+        await _articleRepository.favouriteArticle(slug, favStatus: favStatus);
+    state = articleStatus.fold(
+      (article) => AsyncValue.data(state.asData!.value),
+      (failure) {
+        final articles = state.asData!.value.articles.map((article) {
+          if (article.slug == slug) {
+            favStatus = article.favorited;
+            if (favStatus) {
+              article.favoritesCount--;
+            } else {
+              article.favoritesCount++;
+            }
+            article.favorited = !article.favorited;
+          }
+          return article;
+        }).toList();
+        state = AsyncValue.data(state.asData!.value..articles = articles);
+        return AsyncValue.error(failure);
+      },
+    );
+  }
+
   Future<void> postArticle(Article article) async {
     state = const AsyncValue.loading();
     final articleStatus = await _articleRepository.postArticle(article);
@@ -73,7 +112,7 @@ class ArticleCrudNotifier extends StateNotifier<CustomAsyncValue<Article>> {
 
   Future<void> deleteArticle(String slug) async {
     state = const CustomAsyncValue.loading();
-    final articleStatus = await _articleRepository.deletAricle(slug);
+    final articleStatus = await _articleRepository.deleteAricle(slug);
     state = articleStatus.fold(
       (article) => const CustomAsyncValue.success(),
       (failure) => CustomAsyncValue.error(failure),

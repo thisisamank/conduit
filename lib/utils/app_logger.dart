@@ -14,7 +14,7 @@ class ProviderStateObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    print('''
+    devLog('''
 {
   "provider": "${provider.name ?? provider.runtimeType} ${provider.from}",
   "newValue": "$newValue"
