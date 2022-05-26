@@ -1,6 +1,6 @@
 # Conduit
 
-![conduit banner](.\public\banner.png)
+![conduit banner](public/banner.png)
 
 
 
