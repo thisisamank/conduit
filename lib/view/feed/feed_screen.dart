@@ -1,5 +1,6 @@
 import 'package:conduit/constants/app_colors.dart';
 import 'package:conduit/di/riverpod_dependency_manager.dart';
+import 'package:conduit/routes/route_names.dart';
 import 'package:conduit/themes/app_dimensions.dart';
 import 'package:conduit/themes/text_styles.dart';
 import 'package:conduit/widgets/appbar.dart';
@@ -9,6 +10,7 @@ import 'package:conduit/widgets/profile_name_with_dp.dart';
 import 'package:conduit/widgets/tag_pill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FeedScreen extends ConsumerStatefulWidget {
@@ -72,7 +74,9 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
             itemBuilder: (context, index) {
               final article = data.articles[index];
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.go(AppRouteNames.articleScreen, extra: article);
+                },
                 onDoubleTap: () => ref
                     .watch(articleNotifer.notifier)
                     .changefavouriteStatusOfArticle(article.slug),

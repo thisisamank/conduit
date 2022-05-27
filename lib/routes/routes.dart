@@ -1,6 +1,8 @@
+import 'package:conduit/models/articles.dart';
 import 'package:conduit/routes/route_names.dart';
 import 'package:conduit/view/auth/sign_in_screen.dart';
 import 'package:conduit/view/auth/sign_up_screen.dart';
+import 'package:conduit/view/feed/article_screen.dart';
 import 'package:conduit/view/feed/feed_screen.dart';
 import 'package:conduit/view/home_screen.dart';
 import 'package:conduit/view/onboarding/splash_screen.dart';
@@ -18,6 +20,17 @@ final appRoutes = <GoRoute>[
   _generateGoRoute(
       AppRouteNames.prfileUpdateScreen, const ProfileUpdateScreen()),
   _generateGoRoute(AppRouteNames.feedScreen, const FeedScreen()),
+  GoRoute(
+    path: AppRouteNames.articleScreen,
+    pageBuilder: (context, state) {
+      final article = state.extra as Article;
+      return CustomTransitionPage<void>(
+        child: ArticleScreen(article),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(opacity: animation, child: child),
+      );
+    },
+  ),
 ];
 
 GoRoute _generateGoRoute(String path, Widget child) {

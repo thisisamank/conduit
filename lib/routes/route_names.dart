@@ -6,4 +6,5 @@ class AppRouteNames {
   static const String homeScreen = '/homeScreen';
   static const String prfileUpdateScreen = '/prfileUpdateScreen';
   static const String feedScreen = '/feedScreen';
+  static const String articleScreen = '/articleScreen';
 }
