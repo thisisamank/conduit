@@ -16,6 +16,7 @@ class AppStrings {
   static const String wantToCreateANewAccount = 'Want to create a new account?';
   static const String password = 'Password';
   static const String username = 'Username';
+  static const String follow = 'Follow';
   static const String signUp = 'Sign Up';
   static const String signIn = 'Sign In';
   static const String enterYourPassword = 'Enter your password.';

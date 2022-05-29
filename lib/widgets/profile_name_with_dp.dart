@@ -9,10 +9,12 @@ class ProfileNameWithDP extends ConsumerWidget {
   const ProfileNameWithDP({
     required this.username,
     required this.imageUrl,
+    this.subtitle,
     Key? key,
   }) : super(key: key);
   final String username;
   final String imageUrl;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,12 +27,25 @@ class ProfileNameWithDP extends ConsumerWidget {
             height: largeValue * 3,
           ),
         ),
-        hSizedBox2,
-        Text(
-          username,
-          style: AppTextStyles.p2.copyWith(
-            color: AppColors.neutral300,
-          ),
+        hSizedBox3,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              username,
+              style: AppTextStyles.p2Bold.copyWith(
+                color: AppColors.neutral300,
+              ),
+            ),
+            if (subtitle != null)
+              Text(
+                subtitle!,
+                style: AppTextStyles.p1.copyWith(
+                  color: AppColors.neutral400,
+                ),
+              ),
+          ],
         ),
       ],
     );

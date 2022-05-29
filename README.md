@@ -20,4 +20,3 @@ Or better, Redesigning conduit. Since there is no official mobile design specifi
 ## TODO
 
 - [ ] Implement date convertor to display date in the format of 12th may, 2022 and not 12/05/2022
-- [ ] 
