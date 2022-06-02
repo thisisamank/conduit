@@ -99,9 +99,9 @@ class AppTextStyles {
         color: AppColors.neutral200,
       );
 
-  static TextStyle get p1Bold => const TextStyle(
+  static TextStyle get p1Bold => TextStyle(
         fontFamily: semiBoldFont,
-        fontSize: 14,
+        fontSize: 14.adjustSize,
         color: AppColors.neutral200,
       );
 

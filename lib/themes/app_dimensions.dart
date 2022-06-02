@@ -1,3 +1,4 @@
+import 'package:conduit/constants/app_colors.dart';
 import 'package:conduit/themes/text_styles.dart';
 import 'package:conduit/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,10 @@ final SizedBox hSizedBox9 = SizedBox(
 
 final SizedBox hSizedBox10 = SizedBox(
   width: SizeConfig.deviceWidth! * 10,
+);
+
+const divider = Divider(
+  color: AppColors.dark200,
 );
 
 final smallValue = 8.adjustSize;

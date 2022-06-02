@@ -24,10 +24,10 @@ class ProfileNameWithDP extends ConsumerWidget {
           borderRadius: BorderRadius.circular(200.adjustSize),
           child: CachedNetworkImage(
             imageUrl: imageUrl,
-            height: largeValue * 3,
+            height: largeValue * 2.2,
           ),
         ),
-        hSizedBox3,
+        hSizedBox2,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
