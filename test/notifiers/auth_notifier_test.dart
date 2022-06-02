@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_use_of_protected_member
 
-import 'package:conduit/models/auth_requirement_data.dart';
 import 'package:conduit/models/credentials.dart';
 import 'package:conduit/models/failure.dart';
 import 'package:conduit/notifiers/auth_notifier.dart';
@@ -26,10 +25,11 @@ void main() {
       image: '',
     ),
   );
-  final correctAuthData =
-      AuthRequirementData(username: "username", password: "password");
-  final incorrectAuthData =
-      AuthRequirementData(username: "username1", password: "password1");
+  final correctAuthData = {
+    'username': 'username',
+    'password': 'password',
+  };
+  final incorrectAuthData = {'username': 'username1', 'password': 'password1'};
   setUp(() {
     mockAuthRepository = MockBaseAuthRepository();
     sut = AuthNotifier(mockAuthRepository);
@@ -66,7 +66,7 @@ void main() {
       when(mockAuthRepository.checkAuthStatus())
           .thenAnswer((_) async => credentials);
 
-      await sut.signIn(correctAuthData);
+      await sut.signIn(emailId: 'email', password: 'password');
 
       expect(sut.state, const AuthStates.initial());
       verify(await mockAuthRepository.signIn(authData: correctAuthData))
@@ -79,7 +79,7 @@ void main() {
           .thenAnswer((_) async => left(Failure()));
       when(mockAuthRepository.checkAuthStatus()).thenAnswer((_) async => null);
 
-      sut.signIn(incorrectAuthData);
+      sut.signIn(emailId: 'email', password: 'password');
 
       expect(sut.state, const AuthStates.initial());
       verify(await mockAuthRepository.signIn(authData: incorrectAuthData))
@@ -96,7 +96,8 @@ void main() {
       when(mockAuthRepository.checkAuthStatus())
           .thenAnswer((_) async => credentials);
 
-      await sut.signUp(correctAuthData);
+      await sut.signUp(
+          emailId: 'email', password: 'password', username: 'user');
 
       expect(sut.state, const AuthStates.initial());
       verify(await mockAuthRepository.signUp(authData: correctAuthData))
@@ -109,7 +110,8 @@ void main() {
           .thenAnswer((_) async => left(Failure()));
       when(mockAuthRepository.checkAuthStatus()).thenAnswer((_) async => null);
 
-      await sut.signUp(incorrectAuthData);
+      await sut.signUp(
+          emailId: 'email', password: 'password', username: 'user');
 
       verify(await mockAuthRepository.signUp(authData: incorrectAuthData))
           .called(1);

@@ -23,6 +23,8 @@ abstract class BaseArticleRepository {
   Future<Either<Article, Failure>> favouriteArticle(String slug,
       {required bool favStatus});
   Future<Either<Unit, Failure>> deleteAricle(String slug);
+  Future<Either<Unit, Failure>> fetchComment(String slug);
+  Future<Either<Unit, Failure>> addComment(String slug);
   Future<Either<Article, Failure>> updateArticle({
     required String slug,
     required Article article,
@@ -179,5 +181,17 @@ class ArticleRepository extends BaseArticleRepository {
       String message = DioErrorUtil.handleError(e);
       return right(Failure(message));
     }
+  }
+
+  @override
+  Future<Either<Unit, Failure>> addComment(String slug) {
+    // TODO: implement addComment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Unit, Failure>> fetchComment(String slug) {
+    // TODO: implement fetchComment
+    throw UnimplementedError();
   }
 }
