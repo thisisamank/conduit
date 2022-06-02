@@ -1,5 +1,6 @@
 import 'package:conduit/constants/app_colors.dart';
 import 'package:conduit/constants/app_strings.dart';
+import 'package:conduit/di/riverpod_dependency_manager.dart';
 import 'package:conduit/models/articles.dart';
 import 'package:conduit/themes/app_dimensions.dart';
 import 'package:conduit/themes/text_styles.dart';
@@ -33,6 +34,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
 
   Widget _buildBody(BuildContext context) {
     final article = widget.article;
+    ref.watch(articleNotifer);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: largeValue),
       child: Column(
@@ -89,20 +91,45 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
           Row(
             children: [
               Expanded(
-                flex: 2,
-                child: AppTextField(
-                  textController: TextEditingController(),
-                  hintText: 'Add a comment',
+                flex: 3,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: mediumValue,
+                  ),
+                  child: AppTextField(
+                    textController: TextEditingController(),
+                    hintText: 'Add a comment',
+                  ),
                 ),
               ),
               const Expanded(
                 flex: 1,
                 child: CommentsIcon(commentCount: 5),
               ),
-              const Expanded(
-                flex: 1,
-                child: CommentsIcon(commentCount: 5),
-              ),
+              Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          ref
+                              .watch(articleNotifer.notifier)
+                              .changefavouriteStatusOfArticle(article.slug);
+                        },
+                        icon: Icon(
+                          article.favorited
+                              ? Icons.thumb_up
+                              : Icons.thumb_up_alt_outlined,
+                          color: AppColors.neutral300,
+                        ),
+                      ),
+                      Text(
+                        article.favoritesCount.toString(),
+                        style: AppTextStyles.p3
+                            .copyWith(color: AppColors.neutral300),
+                      ),
+                    ],
+                  )),
             ],
           )
         ],
