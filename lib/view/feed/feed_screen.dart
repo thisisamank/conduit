@@ -75,7 +75,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               final article = data.articles[index];
               return GestureDetector(
                 onTap: () {
-                  context.go(AppRouteNames.articleScreen, extra: article);
+                  context.push(AppRouteNames.articleScreen, extra: article);
                 },
                 onDoubleTap: () => ref
                     .watch(articleNotifer.notifier)

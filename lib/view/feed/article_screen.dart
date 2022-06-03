@@ -26,7 +26,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context: context, isBackButtonEnabled: true),
+      appBar: customAppBar(context: context),
       backgroundColor: AppColors.dark800,
       body: SafeArea(child: _buildBody(context)),
     );
@@ -87,18 +87,22 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
           ),
           vSizedBox2,
           divider,
-          vSizedBox2,
           Row(
             children: [
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: mediumValue,
-                  ),
-                  child: AppTextField(
-                    textController: TextEditingController(),
-                    hintText: 'Add a comment',
+                  padding: EdgeInsets.symmetric(vertical: mediumValue),
+                  child: SizedBox(
+                    height: 60.adjustSize,
+                    child: AppTextField(
+                      textController: TextEditingController(),
+                      hintText: 'Add a comment',
+                      suffix: const Icon(
+                        Icons.send,
+                        color: AppColors.neutral200,
+                      ),
+                    ),
                   ),
                 ),
               ),

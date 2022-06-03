@@ -12,35 +12,7 @@ part of 'auth_states.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthStatesTearOff {
-  const _$AuthStatesTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _UnAuthenticated unAuthenticated() {
-    return const _UnAuthenticated();
-  }
-
-  _Authenticated authenticated(Credentials credentials) {
-    return _Authenticated(
-      credentials,
-    );
-  }
-
-  _AuthFailure failure([String? message]) {
-    return _AuthFailure(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $AuthStates = _$AuthStatesTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthStates {
@@ -113,19 +85,20 @@ class _$AuthStatesCopyWithImpl<$Res> implements $AuthStatesCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AuthStatesCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$$_InitialCopyWithImpl<$Res> extends _$AuthStatesCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -141,7 +114,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -227,22 +200,22 @@ abstract class _Initial implements AuthStates {
 }
 
 /// @nodoc
-abstract class _$UnAuthenticatedCopyWith<$Res> {
-  factory _$UnAuthenticatedCopyWith(
-          _UnAuthenticated value, $Res Function(_UnAuthenticated) then) =
-      __$UnAuthenticatedCopyWithImpl<$Res>;
+abstract class _$$_UnAuthenticatedCopyWith<$Res> {
+  factory _$$_UnAuthenticatedCopyWith(
+          _$_UnAuthenticated value, $Res Function(_$_UnAuthenticated) then) =
+      __$$_UnAuthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnAuthenticatedCopyWithImpl<$Res>
+class __$$_UnAuthenticatedCopyWithImpl<$Res>
     extends _$AuthStatesCopyWithImpl<$Res>
-    implements _$UnAuthenticatedCopyWith<$Res> {
-  __$UnAuthenticatedCopyWithImpl(
-      _UnAuthenticated _value, $Res Function(_UnAuthenticated) _then)
-      : super(_value, (v) => _then(v as _UnAuthenticated));
+    implements _$$_UnAuthenticatedCopyWith<$Res> {
+  __$$_UnAuthenticatedCopyWithImpl(
+      _$_UnAuthenticated _value, $Res Function(_$_UnAuthenticated) _then)
+      : super(_value, (v) => _then(v as _$_UnAuthenticated));
 
   @override
-  _UnAuthenticated get _value => super._value as _UnAuthenticated;
+  _$_UnAuthenticated get _value => super._value as _$_UnAuthenticated;
 }
 
 /// @nodoc
@@ -258,7 +231,7 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UnAuthenticated);
+        (other.runtimeType == runtimeType && other is _$_UnAuthenticated);
   }
 
   @override
@@ -344,28 +317,29 @@ abstract class _UnAuthenticated implements AuthStates {
 }
 
 /// @nodoc
-abstract class _$AuthenticatedCopyWith<$Res> {
-  factory _$AuthenticatedCopyWith(
-          _Authenticated value, $Res Function(_Authenticated) then) =
-      __$AuthenticatedCopyWithImpl<$Res>;
+abstract class _$$_AuthenticatedCopyWith<$Res> {
+  factory _$$_AuthenticatedCopyWith(
+          _$_Authenticated value, $Res Function(_$_Authenticated) then) =
+      __$$_AuthenticatedCopyWithImpl<$Res>;
   $Res call({Credentials credentials});
 }
 
 /// @nodoc
-class __$AuthenticatedCopyWithImpl<$Res> extends _$AuthStatesCopyWithImpl<$Res>
-    implements _$AuthenticatedCopyWith<$Res> {
-  __$AuthenticatedCopyWithImpl(
-      _Authenticated _value, $Res Function(_Authenticated) _then)
-      : super(_value, (v) => _then(v as _Authenticated));
+class __$$_AuthenticatedCopyWithImpl<$Res>
+    extends _$AuthStatesCopyWithImpl<$Res>
+    implements _$$_AuthenticatedCopyWith<$Res> {
+  __$$_AuthenticatedCopyWithImpl(
+      _$_Authenticated _value, $Res Function(_$_Authenticated) _then)
+      : super(_value, (v) => _then(v as _$_Authenticated));
 
   @override
-  _Authenticated get _value => super._value as _Authenticated;
+  _$_Authenticated get _value => super._value as _$_Authenticated;
 
   @override
   $Res call({
     Object? credentials = freezed,
   }) {
-    return _then(_Authenticated(
+    return _then(_$_Authenticated(
       credentials == freezed
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
@@ -391,7 +365,7 @@ class _$_Authenticated implements _Authenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Authenticated &&
+            other is _$_Authenticated &&
             const DeepCollectionEquality()
                 .equals(other.credentials, credentials));
   }
@@ -402,8 +376,8 @@ class _$_Authenticated implements _Authenticated {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthenticatedCopyWith<_Authenticated> get copyWith =>
-      __$AuthenticatedCopyWithImpl<_Authenticated>(this, _$identity);
+  _$$_AuthenticatedCopyWith<_$_Authenticated> get copyWith =>
+      __$$_AuthenticatedCopyWithImpl<_$_Authenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -481,37 +455,38 @@ class _$_Authenticated implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthStates {
-  const factory _Authenticated(Credentials credentials) = _$_Authenticated;
+  const factory _Authenticated(final Credentials credentials) =
+      _$_Authenticated;
 
-  Credentials get credentials;
+  Credentials get credentials => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$AuthenticatedCopyWith<_Authenticated> get copyWith =>
+  _$$_AuthenticatedCopyWith<_$_Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$AuthFailureCopyWith<$Res> {
-  factory _$AuthFailureCopyWith(
-          _AuthFailure value, $Res Function(_AuthFailure) then) =
-      __$AuthFailureCopyWithImpl<$Res>;
+abstract class _$$_AuthFailureCopyWith<$Res> {
+  factory _$$_AuthFailureCopyWith(
+          _$_AuthFailure value, $Res Function(_$_AuthFailure) then) =
+      __$$_AuthFailureCopyWithImpl<$Res>;
   $Res call({String? message});
 }
 
 /// @nodoc
-class __$AuthFailureCopyWithImpl<$Res> extends _$AuthStatesCopyWithImpl<$Res>
-    implements _$AuthFailureCopyWith<$Res> {
-  __$AuthFailureCopyWithImpl(
-      _AuthFailure _value, $Res Function(_AuthFailure) _then)
-      : super(_value, (v) => _then(v as _AuthFailure));
+class __$$_AuthFailureCopyWithImpl<$Res> extends _$AuthStatesCopyWithImpl<$Res>
+    implements _$$_AuthFailureCopyWith<$Res> {
+  __$$_AuthFailureCopyWithImpl(
+      _$_AuthFailure _value, $Res Function(_$_AuthFailure) _then)
+      : super(_value, (v) => _then(v as _$_AuthFailure));
 
   @override
-  _AuthFailure get _value => super._value as _AuthFailure;
+  _$_AuthFailure get _value => super._value as _$_AuthFailure;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_AuthFailure(
+    return _then(_$_AuthFailure(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -537,7 +512,7 @@ class _$_AuthFailure implements _AuthFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthFailure &&
+            other is _$_AuthFailure &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -547,8 +522,8 @@ class _$_AuthFailure implements _AuthFailure {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthFailureCopyWith<_AuthFailure> get copyWith =>
-      __$AuthFailureCopyWithImpl<_AuthFailure>(this, _$identity);
+  _$$_AuthFailureCopyWith<_$_AuthFailure> get copyWith =>
+      __$$_AuthFailureCopyWithImpl<_$_AuthFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -626,10 +601,10 @@ class _$_AuthFailure implements _AuthFailure {
 }
 
 abstract class _AuthFailure implements AuthStates {
-  const factory _AuthFailure([String? message]) = _$_AuthFailure;
+  const factory _AuthFailure([final String? message]) = _$_AuthFailure;
 
-  String? get message;
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$AuthFailureCopyWith<_AuthFailure> get copyWith =>
+  _$$_AuthFailureCopyWith<_$_AuthFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

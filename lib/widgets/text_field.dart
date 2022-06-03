@@ -8,11 +8,13 @@ class AppTextField extends StatelessWidget {
     required this.textController,
     required this.hintText,
     this.validator,
+    this.suffix,
     Key? key,
   }) : super(key: key);
   final String hintText;
   final TextEditingController textController;
   final String? Function(String?)? validator;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,10 @@ class AppTextField extends StatelessWidget {
         fillColor: AppColors.dark700,
         filled: true,
         focusColor: AppColors.dark700,
+        suffixIcon: suffix,
       ),
+      // maxLines: 3,
+      // minLines: 2,
     );
   }
 }

@@ -25,11 +25,6 @@ void main() {
       image: '',
     ),
   );
-  final correctAuthData = {
-    'username': 'username',
-    'password': 'password',
-  };
-  final incorrectAuthData = {'username': 'username1', 'password': 'password1'};
   setUp(() {
     mockAuthRepository = MockBaseAuthRepository();
     sut = AuthNotifier(mockAuthRepository);
@@ -61,7 +56,7 @@ void main() {
 
   group("Test signIn methods", () {
     test('test signIn method with correct auth values', () async {
-      when(mockAuthRepository.signIn(authData: correctAuthData))
+      when(mockAuthRepository.signIn(emailId: 'email', password: 'password'))
           .thenAnswer((_) async => right(credentials));
       when(mockAuthRepository.checkAuthStatus())
           .thenAnswer((_) async => credentials);
@@ -69,20 +64,22 @@ void main() {
       await sut.signIn(emailId: 'email', password: 'password');
 
       expect(sut.state, const AuthStates.initial());
-      verify(await mockAuthRepository.signIn(authData: correctAuthData))
+      verify(await mockAuthRepository.signIn(
+              emailId: 'email', password: 'password'))
           .called(1);
       verify(await mockAuthRepository.checkAuthStatus()).called(1);
       expect(sut.state, AuthStates.authenticated(credentials));
     });
     test('test signIn method with incorrect auth values', () async {
-      when(mockAuthRepository.signIn(authData: incorrectAuthData))
+      when(mockAuthRepository.signIn(emailId: 'email', password: 'password'))
           .thenAnswer((_) async => left(Failure()));
       when(mockAuthRepository.checkAuthStatus()).thenAnswer((_) async => null);
 
       sut.signIn(emailId: 'email', password: 'password');
 
       expect(sut.state, const AuthStates.initial());
-      verify(await mockAuthRepository.signIn(authData: incorrectAuthData))
+      verify(await mockAuthRepository.signIn(
+              emailId: 'email', password: 'password'))
           .called(1);
       verifyNever(await mockAuthRepository.checkAuthStatus());
       expect(sut.state, AuthStates.failure(Failure().message));
@@ -91,29 +88,49 @@ void main() {
 
   group("Test signUp methods", () {
     test('test signUp method with correct auth values', () async {
-      when(mockAuthRepository.signUp(authData: correctAuthData))
-          .thenAnswer((_) async => right(credentials));
+      when(mockAuthRepository.signUp(
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      )).thenAnswer((_) async => right(credentials));
       when(mockAuthRepository.checkAuthStatus())
           .thenAnswer((_) async => credentials);
 
       await sut.signUp(
-          emailId: 'email', password: 'password', username: 'user');
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      );
 
       expect(sut.state, const AuthStates.initial());
-      verify(await mockAuthRepository.signUp(authData: correctAuthData))
+      verify(await mockAuthRepository.signUp(
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      ))
           .called(1);
       verify(await mockAuthRepository.checkAuthStatus()).called(1);
       expect(sut.state, AuthStates.authenticated(credentials));
     });
     test('test signUp method with incorrect auth values', () async {
-      when(mockAuthRepository.signUp(authData: incorrectAuthData))
-          .thenAnswer((_) async => left(Failure()));
+      when(mockAuthRepository.signUp(
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      )).thenAnswer((_) async => left(Failure()));
       when(mockAuthRepository.checkAuthStatus()).thenAnswer((_) async => null);
 
       await sut.signUp(
-          emailId: 'email', password: 'password', username: 'user');
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      );
 
-      verify(await mockAuthRepository.signUp(authData: incorrectAuthData))
+      verify(await mockAuthRepository.signUp(
+        emailId: 'email',
+        password: 'password',
+        username: 'user',
+      ))
           .called(1);
       verifyNever(await mockAuthRepository.checkAuthStatus());
       expect(sut.state, AuthStates.failure(Failure().message));

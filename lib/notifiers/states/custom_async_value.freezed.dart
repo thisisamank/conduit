@@ -12,35 +12,7 @@ part of 'custom_async_value.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CustomAsyncValueTearOff {
-  const _$CustomAsyncValueTearOff();
-
-  _Loading<T> loading<T>() {
-    return _Loading<T>();
-  }
-
-  _Data<T> data<T>(T data) {
-    return _Data<T>(
-      data,
-    );
-  }
-
-  _Success<T> success<T>() {
-    return _Success<T>();
-  }
-
-  _Error<T> error<T>(Object error) {
-    return _Error<T>(
-      error,
-    );
-  }
-}
-
-/// @nodoc
-const $CustomAsyncValue = _$CustomAsyncValueTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CustomAsyncValue<T> {
@@ -114,21 +86,22 @@ class _$CustomAsyncValueCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<T, $Res> {
-  factory _$LoadingCopyWith(
-          _Loading<T> value, $Res Function(_Loading<T>) then) =
-      __$LoadingCopyWithImpl<T, $Res>;
+abstract class _$$_LoadingCopyWith<T, $Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading<T> value, $Res Function(_$_Loading<T>) then) =
+      __$$_LoadingCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<T, $Res>
+class __$$_LoadingCopyWithImpl<T, $Res>
     extends _$CustomAsyncValueCopyWithImpl<T, $Res>
-    implements _$LoadingCopyWith<T, $Res> {
-  __$LoadingCopyWithImpl(_Loading<T> _value, $Res Function(_Loading<T>) _then)
-      : super(_value, (v) => _then(v as _Loading<T>));
+    implements _$$_LoadingCopyWith<T, $Res> {
+  __$$_LoadingCopyWithImpl(
+      _$_Loading<T> _value, $Res Function(_$_Loading<T>) _then)
+      : super(_value, (v) => _then(v as _$_Loading<T>));
 
   @override
-  _Loading<T> get _value => super._value as _Loading<T>;
+  _$_Loading<T> get _value => super._value as _$_Loading<T>;
 }
 
 /// @nodoc
@@ -144,7 +117,7 @@ class _$_Loading<T> implements _Loading<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading<T>);
+        (other.runtimeType == runtimeType && other is _$_Loading<T>);
   }
 
   @override
@@ -230,27 +203,27 @@ abstract class _Loading<T> implements CustomAsyncValue<T> {
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<T, $Res> {
-  factory _$DataCopyWith(_Data<T> value, $Res Function(_Data<T>) then) =
-      __$DataCopyWithImpl<T, $Res>;
+abstract class _$$_DataCopyWith<T, $Res> {
+  factory _$$_DataCopyWith(_$_Data<T> value, $Res Function(_$_Data<T>) then) =
+      __$$_DataCopyWithImpl<T, $Res>;
   $Res call({T data});
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<T, $Res>
+class __$$_DataCopyWithImpl<T, $Res>
     extends _$CustomAsyncValueCopyWithImpl<T, $Res>
-    implements _$DataCopyWith<T, $Res> {
-  __$DataCopyWithImpl(_Data<T> _value, $Res Function(_Data<T>) _then)
-      : super(_value, (v) => _then(v as _Data<T>));
+    implements _$$_DataCopyWith<T, $Res> {
+  __$$_DataCopyWithImpl(_$_Data<T> _value, $Res Function(_$_Data<T>) _then)
+      : super(_value, (v) => _then(v as _$_Data<T>));
 
   @override
-  _Data<T> get _value => super._value as _Data<T>;
+  _$_Data<T> get _value => super._value as _$_Data<T>;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_Data<T>(
+    return _then(_$_Data<T>(
       data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -276,7 +249,7 @@ class _$_Data<T> implements _Data<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Data<T> &&
+            other is _$_Data<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -286,8 +259,8 @@ class _$_Data<T> implements _Data<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<T, _Data<T>> get copyWith =>
-      __$DataCopyWithImpl<T, _Data<T>>(this, _$identity);
+  _$$_DataCopyWith<T, _$_Data<T>> get copyWith =>
+      __$$_DataCopyWithImpl<T, _$_Data<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -365,30 +338,31 @@ class _$_Data<T> implements _Data<T> {
 }
 
 abstract class _Data<T> implements CustomAsyncValue<T> {
-  const factory _Data(T data) = _$_Data<T>;
+  const factory _Data(final T data) = _$_Data<T>;
 
-  T get data;
+  T get data => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DataCopyWith<T, _Data<T>> get copyWith =>
+  _$$_DataCopyWith<T, _$_Data<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SuccessCopyWith<T, $Res> {
-  factory _$SuccessCopyWith(
-          _Success<T> value, $Res Function(_Success<T>) then) =
-      __$SuccessCopyWithImpl<T, $Res>;
+abstract class _$$_SuccessCopyWith<T, $Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success<T> value, $Res Function(_$_Success<T>) then) =
+      __$$_SuccessCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$SuccessCopyWithImpl<T, $Res>
+class __$$_SuccessCopyWithImpl<T, $Res>
     extends _$CustomAsyncValueCopyWithImpl<T, $Res>
-    implements _$SuccessCopyWith<T, $Res> {
-  __$SuccessCopyWithImpl(_Success<T> _value, $Res Function(_Success<T>) _then)
-      : super(_value, (v) => _then(v as _Success<T>));
+    implements _$$_SuccessCopyWith<T, $Res> {
+  __$$_SuccessCopyWithImpl(
+      _$_Success<T> _value, $Res Function(_$_Success<T>) _then)
+      : super(_value, (v) => _then(v as _$_Success<T>));
 
   @override
-  _Success<T> get _value => super._value as _Success<T>;
+  _$_Success<T> get _value => super._value as _$_Success<T>;
 }
 
 /// @nodoc
@@ -404,7 +378,7 @@ class _$_Success<T> implements _Success<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Success<T>);
+        (other.runtimeType == runtimeType && other is _$_Success<T>);
   }
 
   @override
@@ -490,27 +464,28 @@ abstract class _Success<T> implements CustomAsyncValue<T> {
 }
 
 /// @nodoc
-abstract class _$ErrorCopyWith<T, $Res> {
-  factory _$ErrorCopyWith(_Error<T> value, $Res Function(_Error<T>) then) =
-      __$ErrorCopyWithImpl<T, $Res>;
+abstract class _$$_ErrorCopyWith<T, $Res> {
+  factory _$$_ErrorCopyWith(
+          _$_Error<T> value, $Res Function(_$_Error<T>) then) =
+      __$$_ErrorCopyWithImpl<T, $Res>;
   $Res call({Object error});
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<T, $Res>
+class __$$_ErrorCopyWithImpl<T, $Res>
     extends _$CustomAsyncValueCopyWithImpl<T, $Res>
-    implements _$ErrorCopyWith<T, $Res> {
-  __$ErrorCopyWithImpl(_Error<T> _value, $Res Function(_Error<T>) _then)
-      : super(_value, (v) => _then(v as _Error<T>));
+    implements _$$_ErrorCopyWith<T, $Res> {
+  __$$_ErrorCopyWithImpl(_$_Error<T> _value, $Res Function(_$_Error<T>) _then)
+      : super(_value, (v) => _then(v as _$_Error<T>));
 
   @override
-  _Error<T> get _value => super._value as _Error<T>;
+  _$_Error<T> get _value => super._value as _$_Error<T>;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_Error<T>(
+    return _then(_$_Error<T>(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -536,7 +511,7 @@ class _$_Error<T> implements _Error<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Error<T> &&
+            other is _$_Error<T> &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -546,8 +521,8 @@ class _$_Error<T> implements _Error<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$ErrorCopyWith<T, _Error<T>> get copyWith =>
-      __$ErrorCopyWithImpl<T, _Error<T>>(this, _$identity);
+  _$$_ErrorCopyWith<T, _$_Error<T>> get copyWith =>
+      __$$_ErrorCopyWithImpl<T, _$_Error<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -625,10 +600,10 @@ class _$_Error<T> implements _Error<T> {
 }
 
 abstract class _Error<T> implements CustomAsyncValue<T> {
-  const factory _Error(Object error) = _$_Error<T>;
+  const factory _Error(final Object error) = _$_Error<T>;
 
-  Object get error;
+  Object get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ErrorCopyWith<T, _Error<T>> get copyWith =>
+  _$$_ErrorCopyWith<T, _$_Error<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
