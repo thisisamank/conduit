@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:conduit/constants/api_endpoints.dart';
 import 'package:conduit/models/articles.dart';
+import 'package:conduit/models/comments.dart';
 import 'package:conduit/models/failure.dart';
 import 'package:conduit/utils/dio_errors.dart';
 import 'package:conduit/utils/response_conditions.dart';
@@ -23,8 +24,8 @@ abstract class BaseArticleRepository {
   Future<Either<Article, Failure>> favouriteArticle(String slug,
       {required bool favStatus});
   Future<Either<Unit, Failure>> deleteAricle(String slug);
-  Future<Either<Unit, Failure>> fetchComment(String slug);
-  Future<Either<Unit, Failure>> addComment(String slug);
+  Future<Either<TotalComments, Failure>> fetchComment(String slug);
+  Future<Either<Comment, Failure>> addComment(String slug, String comment);
   Future<Either<Article, Failure>> updateArticle({
     required String slug,
     required Article article,
@@ -184,14 +185,44 @@ class ArticleRepository extends BaseArticleRepository {
   }
 
   @override
-  Future<Either<Unit, Failure>> addComment(String slug) {
-    // TODO: implement addComment
-    throw UnimplementedError();
+  Future<Either<Comment, Failure>> addComment(
+      String slug, String comment) async {
+    try {
+      final payload = {
+        "comment": {
+          "body": comment,
+        }
+      };
+      final response = await _dio
+          .post(ApiEndpoints.articleFromSlugUrl(slug: slug), data: payload);
+      if (isSuccessfulResponse(response.statusCode!)) {
+        final commentJson = response.data as Map<String, dynamic>;
+        final comment = Comment.fromJson(commentJson);
+        return left(comment);
+      }
+      return right(Failure(response.data["errors"][0]["message"]));
+    } on DioError catch (e) {
+      String message = DioErrorUtil.handleError(e);
+      return right(Failure(message));
+    }
   }
 
   @override
-  Future<Either<Unit, Failure>> fetchComment(String slug) {
-    // TODO: implement fetchComment
-    throw UnimplementedError();
+  Future<Either<TotalComments, Failure>> fetchComment(String slug) async {
+    try {
+      final response = await _dio
+          .get(ApiEndpoints.articleFromSlugUrl(slug: slug), queryParameters: {
+        'limit': ApiEndpoints.paginationLimit,
+      });
+      if (isSuccessfulResponse(response.statusCode!)) {
+        final commentsJson = response.data as Map<String, dynamic>;
+        final comments = TotalComments.fromJson(commentsJson);
+        return left(comments);
+      }
+      return right(Failure());
+    } on DioError catch (e) {
+      String message = DioErrorUtil.handleError(e);
+      return right(Failure(message));
+    }
   }
 }

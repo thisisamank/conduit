@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:conduit/models/credentials.dart';
+import 'package:conduit/models/author.dart';
 
 class TotalComments {
   TotalComments({
@@ -37,7 +37,7 @@ class Comment {
   final DateTime createdAt;
   final DateTime updatedAt;
   final String body;
-  final User author;
+  final Author author;
 
   factory Comment.fromRawJson(String str) => Comment.fromJson(json.decode(str));
 
@@ -48,7 +48,7 @@ class Comment {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         body: json["body"],
-        author: User.fromJson(json["author"]),
+        author: Author.fromJson(json["author"]),
       );
 
   Map<String, dynamic> toJson() => {

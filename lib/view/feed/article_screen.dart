@@ -24,6 +24,15 @@ class ArticleScreen extends ConsumerStatefulWidget {
 
 class _ArticleScreenState extends ConsumerState<ArticleScreen> {
   @override
+  void initState() {
+    Future.microtask(() {
+      ref.refresh(commentNotifier);
+      ref.watch(commentNotifier.notifier).fetchComments(widget.article.slug);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context: context),
@@ -100,7 +109,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
                       hintText: 'Add a comment',
                       suffix: const Icon(
                         Icons.send,
-                        color: AppColors.neutral200,
+                        color: AppColors.neutral300,
                       ),
                     ),
                   ),
