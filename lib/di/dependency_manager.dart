@@ -13,18 +13,20 @@ const bool showApiLogs = true;
 void setUpDependencies() {
   getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   getIt.registerSingleton<UserManager>(UserManager());
-  getIt.registerSingleton<Dio>(Dio()
-    ..interceptors.addAll([
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          if (user != null) {
-            options.headers['Authorization'] = 'Bearer ${user!.token}';
-          }
-          handler.next(options);
-        },
-      ),
-      if (showApiLogs) LogInterceptor()
-    ]));
+  getIt.registerSingleton<Dio>(
+    Dio()
+      ..interceptors.addAll([
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (user != null) {
+              options.headers['Authorization'] = 'Bearer ${user!.token}';
+            }
+            handler.next(options);
+          },
+        ),
+        if (showApiLogs) LogInterceptor()
+      ]),
+  );
   getIt.registerSingleton<BaseStorage<Credentials>>(
       CredentialStorage(flutterSecureStorage));
   getIt.registerSingleton<BaseAuthRepository>(

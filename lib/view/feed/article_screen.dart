@@ -43,7 +43,6 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
 
   Widget _buildBody(BuildContext context) {
     final article = widget.article;
-    ref.watch(articleNotifer);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: largeValue),
       child: Column(
@@ -119,30 +118,33 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
                 flex: 1,
                 child: CommentsIcon(commentCount: 5),
               ),
-              Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          ref
-                              .watch(articleNotifer.notifier)
-                              .changefavouriteStatusOfArticle(article.slug);
-                        },
-                        icon: Icon(
-                          article.favorited
-                              ? Icons.thumb_up
-                              : Icons.thumb_up_alt_outlined,
-                          color: AppColors.neutral300,
+              Consumer(builder: (context, ref, child) {
+                ref.watch(articleNotifer);
+                return Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            ref
+                                .watch(articleNotifer.notifier)
+                                .changefavouriteStatusOfArticle(article.slug);
+                          },
+                          icon: Icon(
+                            article.favorited
+                                ? Icons.thumb_up
+                                : Icons.thumb_up_alt_outlined,
+                            color: AppColors.neutral300,
+                          ),
                         ),
-                      ),
-                      Text(
-                        article.favoritesCount.toString(),
-                        style: AppTextStyles.p3
-                            .copyWith(color: AppColors.neutral300),
-                      ),
-                    ],
-                  )),
+                        Text(
+                          article.favoritesCount.toString(),
+                          style: AppTextStyles.p3
+                              .copyWith(color: AppColors.neutral300),
+                        ),
+                      ],
+                    ));
+              }),
             ],
           )
         ],

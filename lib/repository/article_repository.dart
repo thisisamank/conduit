@@ -211,7 +211,7 @@ class ArticleRepository extends BaseArticleRepository {
   Future<Either<TotalComments, Failure>> fetchComment(String slug) async {
     try {
       final response = await _dio
-          .get(ApiEndpoints.articleFromSlugUrl(slug: slug), queryParameters: {
+          .get(ApiEndpoints.commentsOnArticleUrl(slug: slug), queryParameters: {
         'limit': ApiEndpoints.paginationLimit,
       });
       if (isSuccessfulResponse(response.statusCode!)) {
