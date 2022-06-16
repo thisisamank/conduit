@@ -23,6 +23,7 @@ class ArticleScreen extends ConsumerStatefulWidget {
 }
 
 class _ArticleScreenState extends ConsumerState<ArticleScreen> {
+  final TextEditingController _commentController = TextEditingController();
   @override
   void initState() {
     Future.microtask(() {
@@ -104,19 +105,41 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
                   child: SizedBox(
                     height: 60.adjustSize,
                     child: AppTextField(
-                      textController: TextEditingController(),
+                      textController: _commentController,
                       hintText: 'Add a comment',
-                      suffix: const Icon(
-                        Icons.send,
+                      suffix: IconButton(
+                        splashRadius: 2,
+                        icon: const Icon(Icons.send),
+                        onPressed: () {
+                          final comment = _commentController.text;
+                          if (comment.isNotEmpty) {
+                            ref
+                                .watch(commentNotifier.notifier)
+                                .postComment(article.slug, comment);
+                            _commentController.text = "";
+                          }
+                        },
                         color: AppColors.neutral300,
                       ),
                     ),
                   ),
                 ),
               ),
-              const Expanded(
-                flex: 1,
-                child: CommentsIcon(commentCount: 5),
+              Consumer(
+                builder: (context, ref, child) {
+                  final commentState = ref.watch(commentNotifier);
+                  return commentState.when(
+                    data: (value) => Expanded(
+                      flex: 1,
+                      child: CommentsIcon(commentCount: value.comments.length),
+                    ),
+                    error: (_, __) => const SizedBox.shrink(),
+                    loading: () => const Expanded(
+                      flex: 1,
+                      child: CommentsIcon(commentCount: 0),
+                    ),
+                  );
+                },
               ),
               Consumer(builder: (context, ref, child) {
                 ref.watch(articleNotifer);

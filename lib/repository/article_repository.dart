@@ -194,7 +194,7 @@ class ArticleRepository extends BaseArticleRepository {
         }
       };
       final response = await _dio
-          .post(ApiEndpoints.articleFromSlugUrl(slug: slug), data: payload);
+          .post(ApiEndpoints.commentsOnArticleUrl(slug: slug), data: payload);
       if (isSuccessfulResponse(response.statusCode!)) {
         final commentJson = response.data as Map<String, dynamic>;
         final comment = Comment.fromJson(commentJson);

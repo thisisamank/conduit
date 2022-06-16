@@ -43,13 +43,18 @@ class Comment {
 
   String toRawJson() => json.encode(toJson());
 
-  factory Comment.fromJson(Map<String, dynamic> json) => Comment(
-        id: json["id"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        body: json["body"],
-        author: Author.fromJson(json["author"]),
-      );
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('comment')) {
+      json = json['comment'];
+    }
+    return Comment(
+      id: json["id"] as int,
+      createdAt: DateTime.parse(json["createdAt"]),
+      updatedAt: DateTime.parse(json["updatedAt"]),
+      body: json["body"].toString(),
+      author: Author.fromJson(json["author"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,

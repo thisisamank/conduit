@@ -15,11 +15,10 @@ class CommentsNotifier extends StateNotifier<AsyncValue<TotalComments>> {
   }
 
   Future<void> postComment(String slug, String comment) async {
-    state = const AsyncValue.loading();
+    final comments = state.value;
     final commentStatus = await _articleRepository.addComment(slug, comment);
     state = commentStatus.fold(
-      (comment) => state..value!.comments.add(comment),
-      (failure) => AsyncValue.error(failure),
-    );
+        (comment) => AsyncValue.data(comments!..comments.add(comment)),
+        (failure) => AsyncValue.error(failure));
   }
 }
