@@ -53,12 +53,15 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                 onTap: () {},
                 child: Center(
                   child: Container(
-                    width: 28.adjustSize,
-                    height: 28.adjustSize,
+                    width: 24.adjustSize,
+                    height: 24.adjustSize,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Icon(FeatherIcons.edit2),
+                    child: Icon(
+                      FeatherIcons.edit2,
+                      size: 22.adjustSize,
+                    ),
                   ),
                 ),
               ),
